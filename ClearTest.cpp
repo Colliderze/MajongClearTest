@@ -7,6 +7,8 @@
 
 using namespace std;
 //这是一个清一色小游戏
+//下面的变量影响生成手牌的听牌数量，范围为1~9。3即三面听
+int waitingCardsCount = 3;
 
 bool isValidCombination(vector<int> hand) //输入一个补一张牌后去掉了一个对子的手牌，长度为12.
 {
@@ -141,7 +143,7 @@ void spawnAHandToGuess()
 		sort(hand.begin(), hand.end());//随机打乱这个数组，取前13个得到手牌
 		winningCards = getWinningCards(hand);
 
-	} while (winningCards.size()<=3);//若生成的不可听牌，则重复生成。
+	} while (winningCards.size() != waitingCardsCount);//若生成的听牌形状不符合就重新生成。
 	cout << "你的手牌是: " << endl;
 	for (int i = 0; i < 13; ++i)
 	{
